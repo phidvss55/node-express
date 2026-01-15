@@ -1,4 +1,4 @@
-import express, { RequestHandler } from 'express';
+import { RequestHandler } from 'express';
 import { plainToClass } from 'class-transformer';
 import { validate, ValidationError } from 'class-validator';
 import HttpException from '../exceptions/http.exception';

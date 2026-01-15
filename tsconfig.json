@@ -1,18 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "lib": ["es6"],
-    "allowJs": true,
     "outDir": "build",
     "rootDir": "src",
+    "baseUrl": "./",
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": false,
+    "target": "ES2022",
+    "module": "commonjs",
     "strict": true,
-    "noImplicitAny": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "lib", "**/*.test.ts"]
 }

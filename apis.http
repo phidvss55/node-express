@@ -1,11 +1,29 @@
-###
-GET http://localhost:3000/api/product/list
+@api_host = http://localhost:5001/v1/api
+
+### health check
+GET http://localhost:5001/health HTTP/1.1
 Content-type: 'application/json'
 
-###
-GET http://localhost:3000/api/category
+### create user 
+POST {{api_host}}/auth/register HTTP/1.1
 Content-type: 'application/json'
 
-###
-GET http://localhost:3000/api/cms/category
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "test@gmail.com",
+  "phone": "0123456789",
+  "password": "P@ssw0rd"
+}
+
+### get post list
+GET {{api_host}}/posts HTTP/1.1
+Content-type: 'application/json'
+
+### get category list 
+GET {{api_host}}/category
+Content-type: 'application/json'
+
+### get category list
+GET {{api_host}}/cms/category
 Content-type: 'application/json'

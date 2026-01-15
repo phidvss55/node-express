@@ -1,28 +1,28 @@
-import express, { Request, Response, NextFunction, RequestHandler } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import Post from '../interfaces/post.interface';
 import PostService from '../services/posts.service';
 import IController from '../../../factory/controller.interface';
 import PostNotFoundException from '../exceptions/post-not-found.exception';
-import validationMiddleware from '../../../middlewares/validation.middleware';
 import CreatePostDto from '../validations/post.dto';
-import authMiddleware from '../../../middlewares/auth.middleware';
-import RequestWithUser from '../../Authentication/interfaces/requestWithUser.interface';
-import { asJson } from '../../../common/utils';
+import authMiddleware from '@/core/middlewares/auth.middleware';
+import validationMiddleware from '@/core/middlewares/validation.middleware';
+import { asJson, asyncHandler } from '@/core/common/utils';
+import RequestWithUser from '@/modules/Authentication/interfaces/requestWithUser.interface';
 
 class PostsController implements IController {
   public path = '/posts';
   public router = express.Router();
 
-  private postService: PostService;
+  private readonly postService: PostService;
 
   constructor(postService: PostService) {
-    this.intializeRoutes();
     this.postService = postService;
+    this.intializeRoutes();
   }
 
-  public async intializeRoutes() {
-    this.router.get(this.path, this.getAllPosts);
-    this.router.get(`${this.path}/:id`, this.getPostById);
+  public intializeRoutes() {
+    this.router.get(this.path, asyncHandler(this.getAllPosts));
+    this.router.get(`${this.path}/:id`, asyncHandler(this.getPostById));
 
     this.router
       .all(`${this.path}/*`, authMiddleware)
@@ -32,6 +32,7 @@ class PostsController implements IController {
   }
 
   getAllPosts = async (req: Request, res: Response) => {
+    console.log('Getting all posts');
     const response = await this.postService.getAllPosts();
     res.status(200).send(asJson(true, response));
   };

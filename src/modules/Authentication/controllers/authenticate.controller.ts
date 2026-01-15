@@ -1,31 +1,32 @@
-import * as bcrypt from 'bcryptjs';
 import express, { Request, Response, NextFunction } from 'express';
 import IController from '../../../factory/controller.interface';
 import LoginDto from '../validations/login.dto';
 import UserModel from '../../UserModule/entities/user.entity';
-import validationMiddleware from '../../../middlewares/validation.middleware';
 import UserAlreadyExistsException from '../exceptions/user-existed.exception';
 import WrongCredentialsException from '../exceptions/wrong-credentials.exception';
 import CreateUserDto from '../../UserModule/validations/create-user.dto';
 import UserService from '../../UserModule/services/user.service';
-import { asJson } from '../../../common/utils';
 import { comparePassword, createCookie, createToken } from '../utils/token';
-import authMiddleware from '../../../middlewares/auth.middleware';
 import RequestWithUser from '../interfaces/requestWithUser.interface';
 import AuthenticationService from '../services/authenticate.service';
+import { asJson } from '@/core/common/utils';
+import authMiddleware from '@/core/middlewares/auth.middleware';
+import validationMiddleware from '@/core/middlewares/validation.middleware';
 
 class AuthenticationController implements IController {
   public path = '/auth';
   public router = express.Router();
-  private user = UserModel;
 
-  private userService: UserService;
-  private authenticationService: AuthenticationService;
+  private readonly user = UserModel;
+
+  private readonly userService: UserService;
+  private readonly authenticationService: AuthenticationService;
 
   constructor(userService: UserService, authenService: AuthenticationService) {
-    this.initializeRoutes();
     this.userService = userService;
     this.authenticationService = authenService;
+
+    this.initializeRoutes();
   }
 
   private initializeRoutes() {

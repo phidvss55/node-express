@@ -1,16 +1,18 @@
-import * as mongoose from 'mongoose';
-import 'dotenv/config';
+import mongoose from 'mongoose';
 
-const { MONGO_HOST, MONGO_PORT, MONGO_DATABASE } = process.env;
+const { MONGODB_PORT, MONGODB_HOST, MONGODB_DATABASE } = process.env;
 
 export const connectionToDatabase = () => {
-  const strConnection = `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`;
+  // const strConnection = `mongodb+srv://root:root@${MONGODB_HOST}:${MONGODB_PORT}/${MONGODB_DATABASE}?retryWrites=true&w=majority`;
+  // const strConnection = `mongodb://root:root@127.0.0.1:27027/mongodb_node_express?authSource=admin`;
+  const strConnection = process.env.MONGODB_CONNECTION_STRING || `undefined`;
+
   mongoose
     .connect(strConnection)
     .then(() => {
-      console.log('Connected to database');
+      console.log('[MONGODB]:: Connected to database');
     })
     .catch((err) => {
-      console.log('Something wrong happened: ' + err);
+      console.log('[MONGODB]:: Something wrong happened: ' + err);
     });
 };

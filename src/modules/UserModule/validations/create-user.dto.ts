@@ -3,10 +3,14 @@ import CreateAddressDto from './address.dto';
 import { Type } from 'class-transformer';
 
 class CreateUserDto {
-  @IsString()
+  @IsString({
+    message: 'First name must be a string',
+  })
   public firstName!: string;
 
-  @IsString()
+  @IsString({
+    message: 'Last name must be a string',
+  })
   public lastName!: string;
 
   @IsString()

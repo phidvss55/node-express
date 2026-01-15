@@ -1,5 +1,5 @@
+import User from '@/modules/UserModule/interfaces/user.interface';
 import { Request } from 'express';
-import User from '../../UserModule/interfaces/user.interface';
 
 interface RequestWithUser extends Request {
   user?: User;
