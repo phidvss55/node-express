@@ -1,21 +1,21 @@
-import express, { Request, Response, NextFunction } from 'express';
-import IController from '../../../factory/controller.interface';
+import express, { Request, Response, NextFunction, Router } from 'express';
 import LoginDto from '../validations/login.dto';
-import UserModel from '../../UserModule/entities/user.entity';
 import UserAlreadyExistsException from '../exceptions/user-existed.exception';
 import WrongCredentialsException from '../exceptions/wrong-credentials.exception';
-import CreateUserDto from '../../UserModule/validations/create-user.dto';
-import UserService from '../../UserModule/services/user.service';
 import { comparePassword, createCookie, createToken } from '../utils/token';
 import RequestWithUser from '../interfaces/requestWithUser.interface';
-import AuthenticationService from '../services/authenticate.service';
+import { AuthenticationService } from '../services/authenticate.service';
 import { asJson } from '@/core/common/utils';
 import authMiddleware from '@/core/middlewares/auth.middleware';
 import validationMiddleware from '@/core/middlewares/validation.middleware';
+import IController from '@/factory/controller.interface';
+import UserService from '@/modules/user-module/services/user.service';
+import CreateUserDto from '@/modules/user-module/validations/create-user.dto';
+import UserModel from '@/modules/user-module/entities/user.entity';
 
 class AuthenticationController implements IController {
   public path = '/auth';
-  public router = express.Router();
+  public router: Router = express.Router();
 
   private readonly user = UserModel;
 

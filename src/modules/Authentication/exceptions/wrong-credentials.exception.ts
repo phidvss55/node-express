@@ -1,4 +1,4 @@
-import HttpException from '../../../core/exceptions/http.exception';
+import HttpException from '@/core/exceptions/http.exception';
 
 class WrongCredentialsException extends HttpException {
   constructor() {

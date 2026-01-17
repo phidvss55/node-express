@@ -4,8 +4,6 @@ import CreateUserDto from '../validations/create-user.dto';
 import * as bcrypt from 'bcryptjs';
 
 class UserService {
-  constructor() {}
-
   async createUser(data: CreateUserDto) {
     const hashedPassword = await bcrypt.hash(data.password, 10);
     const user: any = await UserModel.create({

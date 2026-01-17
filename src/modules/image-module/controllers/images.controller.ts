@@ -1,10 +1,10 @@
 import IController from '@/factory/controller.interface';
-import Post from '@/modules/PostModule/interfaces/post.interface';
-import * as express from 'express';
+import Post from '@/modules/post-module/interfaces/post.interface';
+import express from 'express';
 
 class ImagesController implements IController {
   public path = '/images';
-  public router = express.Router();
+  public router: express.Router = express.Router();
 
   private readonly posts: Post[] = [
     {

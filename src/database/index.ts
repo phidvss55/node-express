@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const { MONGODB_PORT, MONGODB_HOST, MONGODB_DATABASE } = process.env;
+// const { MONGODB_PORT, MONGODB_HOST, MONGODB_DATABASE } = process.env;
 
 export const connectionToDatabase = () => {
   // const strConnection = `mongodb+srv://root:root@${MONGODB_HOST}:${MONGODB_PORT}/${MONGODB_DATABASE}?retryWrites=true&w=majority`;

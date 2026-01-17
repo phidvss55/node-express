@@ -1,0 +1,10 @@
+#!/bin/sh
+
+commit_msg=$(cat "$1")
+
+if ! echo "$commit_msg" | grep -Eq '^\([a-z]+\): .+'; then
+  echo "❌ Invalid commit message format"
+  echo "✅ Use: (type): description"
+  echo "📌 Example: (refactor): simplify auth logic"
+  exit 1
+fi

@@ -1,9 +1,9 @@
 import express, { NextFunction, Response, Router } from 'express';
-import RequestWithUser from '../../Authentication/interfaces/requestWithUser.interface';
-import PostService from '../../PostModule/services/posts.service';
 import NotAuthorizedException from '@/core/exceptions/not-authorized.exception';
 import IController from '@/factory/controller.interface';
 import authMiddleware from '@/core/middlewares/auth.middleware';
+import PostService from '@/modules/post-module/services/posts.service';
+import RequestWithUser from '@/modules/authentication/interfaces/requestWithUser.interface';
 
 class UserController implements IController {
   public path: string = '/users';

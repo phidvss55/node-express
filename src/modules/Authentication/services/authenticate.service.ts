@@ -2,14 +2,14 @@ import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import QRCode from 'qrcode';
 import * as speakeasy from 'speakeasy';
-import UserModel from '../../UserModule/entities/user.entity';
-import CreateUserDto from '../../UserModule/validations/create-user.dto';
 import UserAlreadyExistsException from '../exceptions/user-existed.exception';
 import { DataStoredInToken, TokenData } from '../interfaces/token.interface';
-import User from '../../UserModule/interfaces/user.interface';
 import { Response } from 'express';
+import UserModel from '@/modules/user-module/entities/user.entity';
+import CreateUserDto from '@/modules/user-module/validations/create-user.dto';
+import User from '@/modules/user-module/interfaces/user.interface';
 
-class AuthenticationService {
+export class AuthenticationService {
   public user = UserModel;
 
   public async register(userData: CreateUserDto) {
@@ -68,5 +68,3 @@ class AuthenticationService {
     });
   }
 }
-
-export default AuthenticationService;

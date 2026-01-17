@@ -1,11 +1,11 @@
 import { Request, Response, Router } from 'express';
 import IController from '../../../factory/controller.interface';
-import UserModel from '../../UserModule/entities/user.entity';
+import UserModel from '../../user-module/entities/user.entity';
 
 class ReportController implements IController {
   public path = '/report';
-  public router = Router();
-  private user = UserModel;
+  public router: Router = Router();
+  private readonly user = UserModel;
 
   constructor() {
     this.initializeRoutes();
@@ -15,7 +15,7 @@ class ReportController implements IController {
     this.router.get(`${this.path}`, this.generateReport);
   }
 
-  private generateReport = async (request: Request, response: Response) => {
+  private readonly generateReport = async (request: Request, response: Response) => {
     const usersByCountries = await this.user.aggregate([
       {
         $match: {

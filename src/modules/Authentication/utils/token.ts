@@ -1,7 +1,7 @@
-import User from '../../UserModule/interfaces/user.interface';
-import { DataStoredInToken, TokenData } from '../interfaces/token.interface';
+import User from '../../user-module/interfaces/user.interface';
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
+import { DataStoredInToken, TokenData } from '../interfaces/token.interface';
 
 export const createToken = (user: User): TokenData => {
   const expiresIn = 60 * 60;

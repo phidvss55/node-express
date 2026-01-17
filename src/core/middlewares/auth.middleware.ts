@@ -1,6 +1,6 @@
-import RequestWithUser from '@/modules/Authentication/interfaces/requestWithUser.interface';
-import { DataStoredInToken } from '@/modules/Authentication/interfaces/token.interface';
-import UserModel from '@/modules/UserModule/entities/user.entity';
+import RequestWithUser from '@/modules/authentication/interfaces/requestWithUser.interface';
+import { DataStoredInToken } from '@/modules/authentication/interfaces/token.interface';
+import UserModel from '@/modules/user-module/entities/user.entity';
 import { NextFunction, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import WrongAuthenticationTokenException from '../exceptions/wrong-token.exception';
